@@ -1,0 +1,561 @@
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url('assets/fonts/BebasNeue Bold.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('assets/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype-variations'),
+         url('assets/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --color-bg: #FFFFFF;
+    --color-text-dark: #0D0D0D;
+    --color-accent: #750C25;
+    --color-underline: #830D2E;
+    --color-card-bg: #141414;
+    --color-border: #B6B6B6;
+    
+    --font-heading: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* ==========================================================================
+   БАЗОВЫЕ СТИЛИ
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text-dark);
+    font-family: var(--font-body);
+    font-weight: 400;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 70px;
+}
+
+/* ==========================================================================
+   ШАПКА (HEADER)
+   ========================================================================== */
+.header {
+    padding-top: 30px;
+}
+
+.header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 50px;
+    color: var(--color-accent);
+    text-decoration: none;
+    line-height: 1;
+}
+
+.nav {
+    display: flex;
+    gap: 32px;
+}
+
+.nav__link {
+    position: relative;
+    text-decoration: none;
+    color: var(--color-text-dark);
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
+}
+
+.nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background-color: var(--color-underline);
+    transform: scaleX(1);
+    transition: transform 0.3s ease;
+}
+
+.nav__link:hover {
+    color: var(--color-underline);
+}
+
+.nav__link:hover::after {
+    transform: scaleX(0);
+}
+
+.burger-menu {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.burger-menu__icon {
+    width: 28px;
+    height: auto;
+    display: block;
+}
+
+/* ==========================================================================
+   КНОПКА ОБСУДИТЬ ПРОЕКТ
+   ========================================================================== */
+.my-btn {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color-accent);
+    color: #FFFFFF;
+    border-radius: 100px;
+    padding: 6px 6px 6px 24px;
+    text-decoration: none;
+}
+
+.my-btn-text {
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 16px;
+    z-index: 2;
+    transition: color 0.3s ease !important;
+}
+
+.my-btn-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    z-index: 1;
+    transition: transform 0.4s ease-in-out !important;
+}
+
+.my-btn-icon {
+    width: 20px;
+    height: 20px;
+    z-index: 3;
+    transition: transform 0.3s ease;
+}
+
+.my-btn:hover .my-btn-circle {
+    transform: scale(15);
+}
+
+.my-btn:hover .my-btn-text {
+    color: var(--color-accent) !important;
+}
+
+.my-btn:hover .my-btn-icon {
+    transform: rotate(45deg);
+}
+
+.mobile-btn {
+    display: none;
+}
+
+/* ==========================================================================
+   МОБИЛЬНОЕ МЕНЮ
+   ========================================================================== */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 60%;
+    min-width: 280px;
+    max-width: 400px;
+    height: 100vh;
+    background-color: #FFFFFF;
+    border-left: 1.5px solid var(--color-accent);
+    border-top: 1.5px solid var(--color-accent);
+    border-bottom: 1.5px solid var(--color-accent);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    z-index: 100;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-nav.active {
+    transform: translateX(0);
+}
+
+.mobile-nav__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-nav__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.mobile-nav__links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.mobile-nav__link {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-text-dark);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--color-accent);
+}
+
+.mobile-nav__btn {
+    width: 100%;
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hero {
+    position: relative;
+    padding-top: 400px;
+    padding-bottom: 80px;
+}
+
+.hero__container {
+    position: relative;
+}
+
+.hero__content-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    position: relative;
+}
+
+.hero__title {
+    font-family: var(--font-heading);
+    font-size: 100px;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    font-weight: 400;
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.hero__title--accent {
+    color: var(--color-accent);
+}
+
+.hero__badge {
+    position: absolute;
+    top: -10px;
+    left: 500px;
+    transform: rotate(4deg);
+    background: #F4F4F4;
+    border: 1px solid #B0B0B0;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #141414;
+    z-index: 4;
+    white-space: nowrap;
+}
+
+.hero__avatar-wrapper {
+    position: absolute;
+    right: 220px;
+    top: -380px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.hero__avatar {
+    width: 350px;
+    height: auto;
+    display: block;
+}
+
+/* ==========================================================================
+   БЛОК КАРТОЧЕК СВЯЗИ (РАЗДЕЛЬНЫЕ ПЛАШКИ КАК НА 1 ФОТО)
+   ========================================================================== */
+.contacts-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0px; /* Расстояние между двумя карточками */
+    width: 180px;
+    min-width: 190px;
+    max-width: 240px;
+    flex-shrink: 0;
+    z-index: 3;
+}
+
+/* Отдельные карточки со скруглением по 20px на всех углах */
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 25px 20px;
+    border-radius: 20px;
+    background-color: var(--color-card-bg);
+    color: #FFFFFF;
+}
+
+/* Верхняя карточка ("Есть задача?") */
+.card--task {
+    gap: 20px;
+}
+
+.card--task .card__title {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.card--task .card__text {
+    font-size: 14px;
+    line-height: 1.25;
+    color: #E0E0E0;
+}
+
+/* Нижняя карточка ("Контакты для связи") */
+.card--links {
+    gap: 40px;
+}
+
+.card--links .card__socials {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.card--links .card__title {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+/* Иконки социальных сетей */
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    position: relative;
+    transition: transform 0.25s ease;
+}
+
+.social-btn__icon {
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.25s ease;
+}
+
+.social-btn__icon--default {
+    opacity: 1;
+}
+
+.social-btn__icon--hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.social-btn:hover {
+    transform: translateY(-2px);
+}
+
+.social-btn:hover .social-btn__icon--default {
+    opacity: 0;
+}
+
+.social-btn:hover .social-btn__icon--hover {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+
+/* Ноутбуки (1025px — 1439px) */
+@media (max-width: 1439px) and (min-width: 1025px) {
+    .container {
+        padding: 0 40px;
+    }
+    .hero__title {
+        font-size: 80px;
+    }
+    .hero__badge {
+        left: 360px;
+        top: 40px;
+    }
+    .hero__avatar-wrapper {
+        right: 210px;
+    }
+    .hero__avatar {
+        width: 300px;
+    }
+}
+
+/* Планшеты и Мобильные (<= 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .header {
+        padding-top: 16px;
+    }
+
+    .nav, .desktop-btn {
+        display: none;
+    }
+
+    .burger-menu {
+        display: block;
+    }
+
+    .hero {
+        padding-top: 16px;
+        padding-bottom: 24px;
+    }
+
+    .hero__content-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero__title {
+        font-size: clamp(34px, 9.5vw, 68px);
+        white-space: normal;
+        text-align: left;
+        width: 100%;
+        margin-bottom: 20px;
+        line-height: 0.95;
+    }
+
+    .hero__badge {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: rotate(2deg);
+        align-self: flex-end;
+        margin-right: 10px;
+        margin-bottom: 20px;
+        font-size: 11px;
+        padding: 8px 12px;
+        background: #F4F4F4;
+        border: 1px solid #B0B0B0;
+        border-radius: 8px;
+        white-space: nowrap;
+    }
+
+    .hero__avatar-wrapper {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin: 0 auto 24px auto;
+        text-align: center;
+    }
+
+    .hero__avatar {
+        width: 220px;
+        max-width: 100%;
+    }
+
+    /* Мобильная адаптация карточек */
+    .contacts-group {
+        flex-direction: row;
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .card {
+        flex: 1;
+        padding: 20px 16px;
+        border-radius: 20px;
+    }
+
+    .card--task {
+        gap: 12px;
+    }
+
+    .card--links {
+        gap: 20px;
+    }
+
+    .card--task .card__title,
+    .card--links .card__title {
+        font-size: 16px;
+    }
+
+    .social-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .mobile-btn {
+        display: flex;
+        width: 100%;
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 390px) {
+    .mobile-nav {
+        width: 80%;
+    }
+
+    .hero__badge {
+        align-self: center;
+        margin-right: 0;
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+
+    .card {
+        padding: 14px 12px;
+    }
+}
