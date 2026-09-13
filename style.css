@@ -428,7 +428,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: var(--font-heading);
-    font-size: clamp(140px, 20vw, 300px);
+    font-size: clamp(140px, 20vw, 200px);
     line-height: 0.8;
     color: var(--color-accent);
     z-index: 1;
@@ -638,7 +638,7 @@ body {
     top: -35px;
     left: 150px;
     background-color: #FFFFFF;
-    color: #111111;
+    color: #141414;
     font-size: 16px;
     font-weight: 500;
     padding: 10px 15px;
@@ -666,9 +666,8 @@ body {
     color: #141414;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     box-sizing: border-box;
-    /* Плавный подъем при наведении */
+    height: 100%;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, box-shadow;
 }
@@ -684,12 +683,14 @@ body {
     justify-content: space-between;
     gap: 16px;
     width: 100%;
+    height: 180px;
     margin-bottom: 80px; /* Отступ 80px от картинок до текста из Figma */
+    flex-shrink: 0;
 }
 
 .services-card__badge {
-    width: 44px;
-    height: 44px;
+    width: 50px;
+    height: 50px;
     min-width: 44px;
     background-color: #830D2E;
     border-radius: 50%;
@@ -717,9 +718,9 @@ body {
     overflow: hidden;
 }
 
-.services-card__image-wrap--green { background-color: #C2DCCB; }
-.services-card__image-wrap--pink  { background-color: #ECC7CE; }
-.services-card__image-wrap--blue  { background-color: #C6D8EF; }
+.services-card__image-wrap--green { background-color: #BFE6CB; }
+.services-card__image-wrap--pink  { background-color: #F0CEDA; }
+.services-card__image-wrap--blue  { background-color: #CBE6FD; }
 
 .services-card__img {
     max-width: 75%;
@@ -730,23 +731,24 @@ body {
 .services-card__content {
     display: flex;
     flex-direction: column;
-    gap: 12px;               /* Отступ 12px между заголовком и текстом */
+    gap: 0px;
+    margin-top: 0; /* Гарантированно выравнивает начало текста по единой линии */
 }
 
 .services-card__title {
     font-family: var(--font-heading);
-    font-size: 30px;         /* Заголовок 30px */
+    font-size: 30px;
     line-height: 1;
-    margin: 0;
+    margin: 0 0 12px 0;
     text-transform: uppercase;
-    min-height: 60px;        /* Место под 2 строки: выравнивает текст по единой верхней линии */
+    min-height: 10px;
     display: flex;
     align-items: flex-start;
 }
 
 .services-card__desc {
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 16px;
+    line-height: 1.2;
     color: #656565;
     margin: 0;
 }
