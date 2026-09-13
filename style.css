@@ -406,7 +406,7 @@ body {
 }
 
 /* ==========================================================================
-   СЕКЦИЯ ПОДХОД (APPROACH) — ОБНОВЛЕННАЯ СЭФФЕКТАМИ GLASS & NOISE
+   СЕКЦИЯ ПОДХОД (APPROACH)
    ========================================================================== */
 .approach {
     position: relative;
@@ -440,7 +440,7 @@ body {
     letter-spacing: -0.02em;
 }
 
-/* Ровная 4-колоночная сетка */
+/* 4-колоночная сетка */
 .approach__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -469,7 +469,7 @@ body {
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* 1. Слой полупрозрачного фонового изображения */
+/* 1. Слой фонового изображения */
 .approach-card::before {
     content: '';
     position: absolute;
@@ -480,7 +480,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.45; /* Настрой уровень прозрачности картинок */
+    opacity: 0.45;
     z-index: 1;
     transition: opacity 0.3s ease;
 }
@@ -504,7 +504,7 @@ body {
     mix-blend-mode: overlay;
 }
 
-/* 3. Контент карточки поверх фонов */
+/* 3. Контент карточки */
 .approach-card__content {
     position: relative;
     z-index: 3;
@@ -529,48 +529,69 @@ body {
     font-weight: 400;
 }
 
-/* ТЁМНЫЕ КАРТОЧКИ (С фоновыми изображениями) */
+/* ТЁМНЫЕ КАРТОЧКИ С ФОНАМИ */
 .approach-card--dark,
 .approach-card--burgundy,
 .approach-card--blue {
     color: #FFFFFF;
 }
 
-/* Карточка 1 */
+/* Карточка 1 (Колонка 1, Ряд 1) */
 .approach-card--1 {
-    background-color: #112016;
+    background-color: #112016; /* Фоновый темно-зеленый цвет */
     grid-column: 1;
     grid-row: 1;
 }
+
 .approach-card--1::before {
-    background-image: url('assets/Images/approach-bg-1.jpg');
+    background-image: url('assets/Images/approach-bg-1.png');
+    /* Наложение фонового изображения ПОД цвет плашки */
+    mix-blend-mode: overlay; /* или multiply / soft-light в зависимости от экспортированной картинки */
+    opacity: 0.5; /* Регулируй видимость фигуры */
 }
 
-/* Карточка 3 */
+/* Карточка 2 (Колонка 1, Ряд 2) */
+.approach-card--2 {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+/* Карточка 3 (Колонка 2, Ряд 2) */
 .approach-card--3 {
     background-color: #3B1220;
     grid-column: 2;
     grid-row: 2;
 }
 .approach-card--3::before {
-    background-image: url('assets/Images/approach-bg-2.jpg');
+    background-image: url('assets/Images/approach-bg-2.png');
+        mix-blend-mode: overlay; /* или multiply / soft-light в зависимости от экспортированной картинки */
+    opacity: 0.5; /* Регулируй видимость фигуры */
 }
 
-/* Карточка 5 */
+/* Карточка 4 (Колонка 3, Ряд 1) */
+.approach-card--4 {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+/* Карточка 5 (Колонка 4, Ряд 2) */
 .approach-card--5 {
     background-color: #102B42;
     grid-column: 4;
     grid-row: 2;
 }
 .approach-card--5::before {
-    background-image: url('assets/Images/approach-bg-3.jpg');
+    background-image: url('assets/Images/approach-bg-5.png');
+        mix-blend-mode: overlay; /* или multiply / soft-light в зависимости от экспортированной картинки */
+    opacity: 0.5; /* Регулируй видимость фигуры */
 }
 
-/* СВЕТЛЫЕ КАРТОЧКИ (Эффект Glass + ободок 1px #B0B0B0) */
+/* СВЕТЛЫЕ КАРТОЧКИ (Glassmorphism + ободок) */
 .approach-card--light {
-    background-color: rgba(240, 237, 232, 0.75);
+    background-color: rgba(255, 255, 255, 0.73);
+
     backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(15px);
     border: 1px solid var(--color-border);
     color: var(--color-text-dark);
 }
@@ -583,23 +604,18 @@ body {
     color: #4A4A4A;
 }
 
-/* Карточка 2 */
-.approach-card--2 {
-    grid-column: 1;
-    grid-row: 2;
+/* Цветной Noise (Multi) для светлых карточек */
+.approach-card--light::after {
+    mix-blend-mode: color-burn; /* Либо soft-light для более мягкого эффекта */
+    opacity: 0.35; /* Так как в Figma стоит 30%, здесь 0.2-0.25 под верстку будет в самый раз */
 }
 
-/* Карточка 4 */
-.approach-card--4 {
-    grid-column: 3;
-    grid-row: 1;
-}
 
 /* ==========================================================================
-   АДАПТИВНОСТЬ СЕКЦИЙ
+   АДАПТИВНОСТЬ
    ========================================================================== */
 
-/* Ноутбуки (1025px — 1439px) HERO */
+/* Ноутбуки (1025px — 1439px) */
 @media (max-width: 1439px) and (min-width: 1025px) {
     .container {
         padding: 0 40px;
@@ -617,10 +633,6 @@ body {
     .hero__avatar {
         width: 300px;
     }
-}
-
-/* Подход: Брекпоинт 1025px — 1439px */
-@media (max-width: 1439px) and (min-width: 1025px) {
     .approach {
         padding: 100px 0;
     }
@@ -639,7 +651,7 @@ body {
     }
 }
 
-/* Общие стили для планшетов и мобильных (<= 1024px) для HERO */
+/* Планшеты (<= 1024px) */
 @media (max-width: 1024px) {
     .container {
         padding: 0 16px;
@@ -762,7 +774,7 @@ body {
     .approach-card--5 { grid-column: 1 / -1; grid-row: 3; height: 220px; }
 }
 
-/* Подход: Мобильные устройства (< 768px) */
+/* Мобильные устройства (< 768px) */
 @media (max-width: 767px) {
     .approach {
         padding: 60px 0;

@@ -8,6 +8,7 @@
 </head>
 <body>
 
+    <!-- ШАПКА -->
     <header class="header">
         <div class="container header__container">
             <a href="#" class="logo">MB</a>
@@ -34,7 +35,7 @@
         </div>
     </header>
 
-    <!-- БОКОВОЕ МЕНЮ (СПРАВА) -->
+    <!-- БОКОВОЕ МЕНЮ (МОБИЛЬНОЕ) -->
     <div class="mobile-nav" id="mobileNav">
         <div class="mobile-nav__header">
             <a href="#" class="logo">MB</a>
@@ -121,7 +122,7 @@
             </div>
         </section>
 
-        <!-- 2. СЕКЦИЯ "ПОДХОД" (ВСТАВЛЕНА СЮДА) -->
+        <!-- 2. СЕКЦИЯ ПОДХОД -->
         <section class="approach" id="approach">
             <div class="container approach__container">
                 
@@ -133,7 +134,6 @@
                     
                     <!-- Карточка 1: Логика и смысл -->
                     <article class="approach-card approach-card--dark approach-card--1">
-                        <div class="approach-card__bg" style="background-image: url('assets/Images/approach-1.jpg');"></div>
                         <div class="approach-card__content">
                             <h3 class="approach-card__title">ЛОГИКА И СМЫСЛ</h3>
                             <p class="approach-card__text">
@@ -154,7 +154,6 @@
 
                     <!-- Карточка 3: Чистая эстетика -->
                     <article class="approach-card approach-card--burgundy approach-card--3">
-                        <div class="approach-card__bg" style="background-image: url('assets/Images/approach-2.jpg');"></div>
                         <div class="approach-card__content">
                             <h3 class="approach-card__title">ЧИСТАЯ ЭСТЕТИКА</h3>
                             <p class="approach-card__text">
@@ -175,7 +174,6 @@
 
                     <!-- Карточка 5: Понятный процесс -->
                     <article class="approach-card approach-card--blue approach-card--5">
-                        <div class="approach-card__bg" style="background-image: url('assets/Images/approach-3.jpg');"></div>
                         <div class="approach-card__content">
                             <h3 class="approach-card__title">ПОНЯТНЫЙ ПРОЦЕСС</h3>
                             <p class="approach-card__text">
@@ -190,20 +188,25 @@
 
     </main>
 
+    <!-- СКРИПТ МОБИЛЬНОГО МЕНЮ -->
     <script>
         const burgerBtn = document.getElementById('burgerBtn');
         const closeBtn = document.getElementById('closeBtn');
         const mobileNav = document.getElementById('mobileNav');
 
-        burgerBtn.addEventListener('click', () => {
-            mobileNav.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
+        if (burgerBtn) {
+            burgerBtn.addEventListener('click', () => {
+                mobileNav.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        }
 
-        closeBtn.addEventListener('click', () => {
-            mobileNav.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
 
         document.querySelectorAll('.mobile-nav__link').forEach(link => {
             link.addEventListener('click', () => {
