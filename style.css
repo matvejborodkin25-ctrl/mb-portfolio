@@ -122,7 +122,7 @@ body {
 }
 
 /* ==========================================================================
-   КНОПКА ОБСУДИТЬ ПРОЕКТ
+   КНОПКА ОБСУДИТЬ ПРОЕКТ / СМОТРЕТЬ РАБОТЫ
    ========================================================================== */
 .my-btn {
     position: relative;
@@ -422,7 +422,6 @@ body {
     width: 100%;
 }
 
-/* Фоновый огромный заголовок "ПОДХОД" */
 .approach__bg-title {
     position: absolute;
     top: 50%;
@@ -440,7 +439,6 @@ body {
     letter-spacing: -0.02em;
 }
 
-/* 4-колоночная сетка */
 .approach__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -450,7 +448,6 @@ body {
     width: 100%;
 }
 
-/* ОБЩИЕ СТИЛИ КАРТОЧЕК */
 .approach-card {
     position: relative;
     border-radius: 20px;
@@ -461,15 +458,15 @@ body {
     justify-content: space-between;
     overflow: hidden;
     box-sizing: border-box;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, box-shadow;
 }
 
 .approach-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
 }
 
-/* 1. Слой фонового изображения */
 .approach-card::before {
     content: '';
     position: absolute;
@@ -489,7 +486,6 @@ body {
     opacity: 0.6;
 }
 
-/* 2. Слой зернистого шума (Noise effect) */
 .approach-card::after {
     content: '';
     position: absolute;
@@ -504,7 +500,6 @@ body {
     mix-blend-mode: overlay;
 }
 
-/* 3. Контент карточки */
 .approach-card__content {
     position: relative;
     z-index: 3;
@@ -529,34 +524,29 @@ body {
     font-weight: 400;
 }
 
-/* ТЁМНЫЕ КАРТОЧКИ С ФОНАМИ */
 .approach-card--dark,
 .approach-card--burgundy,
 .approach-card--blue {
     color: #FFFFFF;
 }
 
-/* Карточка 1 (Колонка 1, Ряд 1) */
 .approach-card--1 {
-    background-color: #112016; /* Фоновый темно-зеленый цвет */
+    background-color: #112016;
     grid-column: 1;
     grid-row: 1;
 }
 
 .approach-card--1::before {
     background-image: url('assets/Images/approach-bg-1.png');
-    /* Наложение фонового изображения ПОД цвет плашки */
-    mix-blend-mode: overlay; /* или multiply / soft-light в зависимости от экспортированной картинки */
-    opacity: 0.5; /* Регулируй видимость фигуры */
+    mix-blend-mode: overlay;
+    opacity: 0.5;
 }
 
-/* Карточка 2 (Колонка 1, Ряд 2) */
 .approach-card--2 {
     grid-column: 1;
     grid-row: 2;
 }
 
-/* Карточка 3 (Колонка 2, Ряд 2) */
 .approach-card--3 {
     background-color: #3B1220;
     grid-column: 2;
@@ -564,17 +554,15 @@ body {
 }
 .approach-card--3::before {
     background-image: url('assets/Images/approach-bg-2.png');
-        mix-blend-mode: overlay; /* или multiply / soft-light в зависимости от экспортированной картинки */
-    opacity: 0.5; /* Регулируй видимость фигуры */
+    mix-blend-mode: overlay;
+    opacity: 0.5;
 }
 
-/* Карточка 4 (Колонка 3, Ряд 1) */
 .approach-card--4 {
     grid-column: 3;
     grid-row: 1;
 }
 
-/* Карточка 5 (Колонка 4, Ряд 2) */
 .approach-card--5 {
     background-color: #102B42;
     grid-column: 4;
@@ -582,14 +570,12 @@ body {
 }
 .approach-card--5::before {
     background-image: url('assets/Images/approach-bg-5.png');
-        mix-blend-mode: overlay; /* или multiply / soft-light в зависимости от экспортированной картинки */
-    opacity: 0.5; /* Регулируй видимость фигуры */
+    mix-blend-mode: overlay;
+    opacity: 0.5;
 }
 
-/* СВЕТЛЫЕ КАРТОЧКИ (Glassmorphism + ободок) */
 .approach-card--light {
     background-color: rgba(255, 255, 255, 0.73);
-
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid var(--color-border);
@@ -604,15 +590,169 @@ body {
     color: #4A4A4A;
 }
 
-/* Цветной Noise (Multi) для светлых карточек */
 .approach-card--light::after {
-    mix-blend-mode: color-burn; /* Либо soft-light для более мягкого эффекта */
-    opacity: 0.35; /* Так как в Figma стоит 30%, здесь 0.2-0.25 под верстку будет в самый раз */
+    mix-blend-mode: color-burn;
+    opacity: 0.35;
 }
 
+/* ==========================================================================
+   СЕКЦИЯ УСЛУГИ И ФОРМАТЫ (SERVICES)
+   ========================================================================== */
+.services {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.services__container {
+    width: 100%;
+    background-color: #0D0D0D;
+    border-radius: 32px;
+    padding: 70px;
+    color: #FFFFFF;
+    box-sizing: border-box;
+}
+
+.services__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 50px;
+}
+
+.services__title-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.services__title {
+    font-family: var(--font-heading);
+    font-size: 80px;
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.services__badge {
+    position: absolute;
+    top: -35px;
+    left: 150px;
+    background-color: #FFFFFF;
+    color: #111111;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 10px;
+    transform: rotate(4deg);
+    white-space: nowrap;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
+}
+
+.mobile-services-btn {
+    display: none;
+}
+
+.services__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.services-card {
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    padding: 20px; /* Отступ 20px со всех сторон из Figma */
+    color: #141414;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    /* Плавный подъем при наведении */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, box-shadow;
+}
+
+.services-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.services-card__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 80px; /* Отступ 80px от картинок до текста из Figma */
+}
+
+.services-card__badge {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    background-color: #830D2E;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.services-card__badge-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.services-card__image-wrap {
+    width: 180px;            /* Квадрат 180px из Figma */
+    height: 180px;
+    aspect-ratio: 1 / 1;     /* Пропорция 1:1 */
+    flex-shrink: 0;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.services-card__image-wrap--green { background-color: #C2DCCB; }
+.services-card__image-wrap--pink  { background-color: #ECC7CE; }
+.services-card__image-wrap--blue  { background-color: #C6D8EF; }
+
+.services-card__img {
+    max-width: 75%;
+    max-height: 75%;
+    object-fit: contain;
+}
+
+.services-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;               /* Отступ 12px между заголовком и текстом */
+}
+
+.services-card__title {
+    font-family: var(--font-heading);
+    font-size: 30px;         /* Заголовок 30px */
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+    min-height: 60px;        /* Место под 2 строки: выравнивает текст по единой верхней линии */
+    display: flex;
+    align-items: flex-start;
+}
+
+.services-card__desc {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #656565;
+    margin: 0;
+}
 
 /* ==========================================================================
-   АДАПТИВНОСТЬ
+   АДАПТИВНОСТЬ ПО РАЗРЕШЕНИЯМ
    ========================================================================== */
 
 /* Ноутбуки (1025px — 1439px) */
@@ -648,6 +788,28 @@ body {
     }
     .approach-card__text {
         font-size: 13px;
+    }
+
+    /* Services */
+    .services__container {
+        padding: 50px 40px;
+    }
+    .services__title {
+        font-size: 68px;
+    }
+    .services-card {
+        padding: 16px;
+    }
+    .services-card__top {
+        margin-bottom: 50px;
+    }
+    .services-card__image-wrap {
+        width: 150px;
+        height: 150px;
+    }
+    .services-card__title {
+        font-size: 26px;
+        min-height: 52px;
     }
 }
 
@@ -757,7 +919,7 @@ body {
         margin-top: 8px;
     }
 
-    /* Адаптив ПОДХОД для планшетов */
+    /* Адаптив ПОДХОД */
     .approach__container {
         padding: 0 20px;
     }
@@ -772,9 +934,47 @@ body {
     .approach-card--3 { grid-column: 1; grid-row: 2; }
     .approach-card--4 { grid-column: 2; grid-row: 2; }
     .approach-card--5 { grid-column: 1 / -1; grid-row: 3; height: 220px; }
+
+    /* Адаптив УСЛУГИ */
+    .services__container {
+        padding: 40px 20px;
+        border-radius: 24px;
+    }
+
+    .services__grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .desktop-services-btn {
+        display: none;
+    }
+
+    .mobile-services-btn {
+        display: flex;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .services__title {
+        font-size: 52px;
+    }
+
+    .services-card__top {
+        margin-bottom: 40px;
+    }
+
+    .services-card__image-wrap {
+        width: 160px;
+        height: 160px;
+    }
+
+    .services-card__title {
+        min-height: auto;
+    }
 }
 
-/* Мобильные устройства (< 768px) */
+/* Мобильные устройства (< 767px) */
 @media (max-width: 767px) {
     .approach {
         padding: 60px 0;
@@ -810,6 +1010,46 @@ body {
     .approach-card__text {
         font-size: 13px;
         line-height: 1.3;
+    }
+
+    /* Services */
+    .services-card {
+        padding: 16px;
+        border-radius: 20px;
+    }
+
+    .services__badge {
+        position: relative;
+        top: 0;
+        left: 0;
+        display: inline-block;
+        margin-bottom: 8px;
+        font-size: 11px;
+    }
+
+    .services-card__top {
+        margin-bottom: 32px;
+    }
+
+    .services-card__image-wrap {
+        width: 120px;
+        height: 120px;
+        border-radius: 12px;
+    }
+
+    .services-card__badge {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+    }
+
+    .services-card__title {
+        font-size: 24px;
+        min-height: auto;
+    }
+
+    .services-card__desc {
+        font-size: 13px;
     }
 }
 
