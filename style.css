@@ -1203,6 +1203,316 @@ body {
     }
 }
 
+/* ==========================================================================
+   СЕКЦИЯ ОБО МНЕ (ABOUT)
+   ========================================================================== */
+.about {
+    padding: 100px 0;
+    position: relative;
+}
+
+.about__card {
+    position: relative;
+    background-color: #F8F8F8;
+    /* Подключаем вашу картинку фона */
+    background-image: url('assets/Images/about-bg.png');
+    background-size: cover;        /* Растягиваем фон по всей карточке */
+    background-position: center;   /* Центрируем */
+    background-repeat: no-repeat;
+    border: 1px solid #E0E0E0;
+    border-radius: 40px;
+    padding: 60px 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Левая часть — ОБО МНЕ */
+.about__heading-col {
+    flex: 1;
+}
+
+.about__title {
+    font-family: var(--font-heading);
+    font-size: clamp(80px, 9vw, 150px);
+    line-height: 0.85;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    color: var(--color-text-dark);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.about__title--accent {
+    color: var(--color-accent);
+}
+
+/* Центральная часть — Аватар */
+.about__avatar-col {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about__avatar {
+    width: 320px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* Правая часть — Текст и Инфо */
+.about__content-col {
+    flex: 1.1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 460px;
+}
+
+.about__author {
+    margin-bottom: 24px;
+}
+
+.about__name {
+    font-family: var(--font-heading);
+    font-size: 50px;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    font-weight: 400;
+    color: var(--color-text-dark);
+    margin: 0 0 6px 0;
+    text-transform: uppercase;
+}
+
+.about__subtitle {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    letter-spacing: -0.03em;
+    color: #8E8E8E;
+    text-transform: uppercase;
+    display: block;
+}
+
+.about__text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.about__text p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    color: #4A4A4A;
+}
+
+.about__btn {
+    align-self: flex-start;
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ ДЛЯ СЕКЦИИ ABOUT (СОГЛАСНО ВАШИМ 6 СЕТКАМ)
+   ========================================================================== */
+
+/* 1280px — 1440px */
+@media (max-width: 1439px) and (min-width: 1280px) {
+    .about__card {
+        padding: 50px 50px;
+        gap: 30px;
+    }
+    .about__title {
+        font-size: 96px;
+    }
+    .about__avatar {
+        width: 270px;
+    }
+    .about__name {
+        font-size: 46px;
+    }
+    .about__subtitle {
+        font-size: 18px;
+    }
+    .about__text p {
+        font-size: 14px;
+    }
+}
+
+/* 960px — 1280px (Горизонтальный компактный формат) */
+@media (max-width: 1279px) and (min-width: 961px) {
+    .about__card {
+        padding: 40px 32px;
+        gap: 20px;
+        border-radius: 32px;
+    }
+    .about__title {
+        font-size: 72px;
+        white-space: normal;
+        line-height: 0.9;
+    }
+    .about__avatar {
+        width: 220px;
+    }
+    .about__name {
+        font-size: 38px;
+    }
+    .about__subtitle {
+        font-size: 15px;
+    }
+    .about__text {
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+    .about__text p {
+        font-size: 13px;
+        line-height: 1.35;
+    }
+}
+
+/* 768px — 960px (Переход в вертикальную колонку) */
+@media (max-width: 960px) {
+    .about {
+        padding: 60px 0;
+    }
+
+    .about__card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 48px 32px;
+        border-radius: 32px;
+        gap: 28px;
+    }
+
+    .about__heading-col {
+        width: 100%;
+    }
+
+    .about__title {
+        font-size: 64px;
+        text-align: center;
+        white-space: normal;
+    }
+
+    .about__avatar {
+        width: 240px;
+    }
+
+    .about__content-col {
+        align-items: center;
+        max-width: 100%;
+    }
+
+    .about__author {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .about__name {
+        font-size: 44px;
+    }
+
+    .about__subtitle {
+        font-size: 18px;
+    }
+
+    .about__text {
+        text-align: center;
+    }
+
+    .about__btn {
+        align-self: center;
+    }
+}
+
+/* 480px — 786px */
+@media (max-width: 786px) {
+    .about__card {
+        padding: 40px 24px;
+        border-radius: 24px;
+    }
+
+    .about__title {
+        font-size: 52px;
+    }
+
+    .about__avatar {
+        width: 200px;
+    }
+
+    .about__name {
+        font-size: 36px;
+    }
+
+    .about__subtitle {
+        font-size: 16px;
+    }
+
+    .about__text p {
+        font-size: 14px;
+    }
+}
+
+/* 390px — 480px */
+@media (max-width: 480px) {
+    .about__card {
+        padding: 36px 20px;
+    }
+
+    .about__title {
+        font-size: 44px;
+    }
+
+    .about__avatar {
+        width: 170px;
+    }
+
+    .about__name {
+        font-size: 32px;
+    }
+
+    .about__subtitle {
+        font-size: 14px;
+    }
+
+    .about__text p {
+        font-size: 13px;
+    }
+
+    .about__btn {
+        width: 100%;
+    }
+}
+
+/* 320px — 390px (Маленькие мобильные) */
+@media (max-width: 390px) {
+    .about__card {
+        padding: 30px 16px;
+    }
+
+    .about__title {
+        font-size: 38px;
+    }
+
+    .about__avatar {
+        width: 150px;
+    }
+
+    .about__name {
+        font-size: 28px;
+    }
+
+    .about__subtitle {
+        font-size: 13px;
+    }
+}
+
 
 /* ==========================================================================
    АДАПТИВНОСТЬ
