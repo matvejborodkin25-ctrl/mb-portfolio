@@ -85,3 +85,77 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// FAQ Аккордеон
+document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq__item');
+
+    faqItems.forEach(item => {
+        const questionBtn = item.querySelector('.faq__question');
+        const answer = item.querySelector('.faq__answer');
+
+        questionBtn.addEventListener('click', () => {
+            const isOpen = item.classList.contains('active');
+
+            // Закрываем все остальные открытые вопросы (опционально)
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq__answer').style.maxHeight = null;
+                }
+            });
+
+            // Тогглим текущий
+            if (isOpen) {
+                item.classList.remove('active');
+                answer.style.maxHeight = null;
+            } else {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
+});
+
+// Отправка формы в Telegram
+const TELEGRAM_BOT_TOKEN = '8739024849:AAET298R5xsDhIAIeRB6q1_quzoKj9ZviJY';
+const TELEGRAM_CHAT_ID = '903398593';
+
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const name = formData.get('name');
+        const contact = formData.get('contact');
+        const service = formData.get('service');
+
+        const message = `🚀 <b>Новая заявка с сайта!</b>\n\n` +
+                        `👤 <b>Имя:</b> ${name}\n` +
+                        `📞 <b>Контакты:</b> ${contact}\n` +
+                        `🛠 <b>Услуга:</b> ${service}`;
+
+        try {
+            const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            });
+
+            if (response.ok) {
+                alert('Спасибо! Заявка успешно отправлена. Я свяжусь с вами в течение 24 часов.');
+                contactForm.reset();
+            } else {
+                alert('Ошибка при отправке. Попробуйте написать напрямую в Telegram.');
+            }
+        } catch (error) {
+            alert('Ошибка сети. Проверьте подключение.');
+        }
+    });
+}
