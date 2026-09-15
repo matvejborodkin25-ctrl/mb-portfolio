@@ -116,3 +116,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Пример обработчика отправки формы
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const formData = {
+    name: document.querySelector('#name').value,
+    contact: document.querySelector('#contact').value,
+    message: document.querySelector('#message').value,
+  };
+
+  try {
+    const response = await fetch('/api/send-telegram', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      alert('Сообщение успешно отправлено!');
+      form.reset();
+    } else {
+      alert('Ошибка при отправке. Попробуйте позже.');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Произошла ошибка.');
+  }
+});
