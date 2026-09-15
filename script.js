@@ -126,33 +126,47 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Находим кнопку отправки для анимации и блокировки от повторных кликов
+    const submitBtn = form.querySelector('.my-btn');
+    const btnText = form.querySelector('.my-btn-text');
+    const originalText = btnText ? btnText.textContent : 'Обсудить проект';
+
+    // Собираем данные из полей по атрибутам name
     const formData = {
-      name: form.querySelector('[name="name"]').value,
-      contact: form.querySelector('[name="contact"]').value,
+      name: form.querySelector('[name="name"]').value.trim(),
+      contact: form.querySelector('[name="contact"]').value.trim(),
       service: form.querySelector('[name="service"]').value
     };
 
-    const submitBtn = form.querySelector('.my-btn');
-    if (submitBtn) submitBtn.disabled = true;
+    // Состояние загрузки
+    if (submitBtn) submitBtn.style.pointerEvents = 'none';
+    if (btnText) btnText.textContent = 'Отправка...';
 
     try {
       const response = await fetch('/api/send-telegram', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(formData)
       });
 
-      if (response.ok) {
-        alert('Заявка успешно отправлена!');
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        alert('Спасибо! Заявка успешно отправлена.');
         form.reset();
       } else {
-        alert('Ошибка при отправке. Попробуйте еще раз.');
+        console.error('Ошибка сервера:', result);
+        alert('Не удалось отправить заявку. Попробуйте еще раз или свяжитесь со мной напрямую.');
       }
     } catch (error) {
-      console.error('Ошибка:', error);
-      alert('Произошла ошибка при отправке заявки.');
+      console.error('Ошибка сети:', error);
+      alert('Произошла ошибка при отправке. Проверьте подключение к интернету.');
     } finally {
-      if (submitBtn) submitBtn.disabled = false;
+      // Возвращаем кнопку в исходное состояние
+      if (submitBtn) submitBtn.style.pointerEvents = 'auto';
+      if (btnText) btnText.textContent = originalText;
     }
   });
 });
