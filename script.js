@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Отправка формы в Telegram
-const TELEGRAM_BOT_TOKEN = '8739024849:AAET298R5xsDhIAIeRB6q1_quzoKj9ZviJY';
+const TELEGRAM_BOT_TOKEN = '000';
 const TELEGRAM_CHAT_ID = '903398593';
 
 const contactForm = document.getElementById('contactForm');
