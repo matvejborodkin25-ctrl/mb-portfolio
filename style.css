@@ -968,6 +968,243 @@ body {
 }
 
 /* ==========================================================================
+   СЕКЦИЯ ПРОЦЕСС / КАК ПРОХОДИТ РАБОТА (PROCESS)
+   ========================================================================== */
+.process {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.process__container {
+    width: 100%;
+    background-color: #000000;
+    padding: 100px 0;
+    color: #FFFFFF;
+    box-sizing: border-box;
+}
+
+.process__content {
+    width: 100%;
+}
+
+/* Шапка с телевизором */
+.process__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 60px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #2B0710;
+}
+
+.process__title {
+    font-family: var(--font-heading);
+    font-size: clamp(60px, 7vw, 100px);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.process__title--gray {
+    color: #8E8E8E;
+}
+
+/* Обертка телевизора — прижата строго к верхнему правому углу контейнера */
+.process__tv-wrapper {
+    position: absolute;
+    right: 0;
+    top: -100px; /* Выход за пределы шапки к самому верху секции */
+    width: 260px;
+    pointer-events: none;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Само изображение с поворотом */
+.process__tv-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    transform: rotate(-12deg) scale(1.05); /* Наклон телевизора */
+    transform-origin: top right;
+}
+
+/* Список этапов */
+.process__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.process-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 36px 0;
+    border-bottom: 1px solid #2B0710;
+}
+
+.process-item:last-child {
+    border-bottom: none;
+}
+
+.process-item__main {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.process-item__num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: #830D2E;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.process-item__title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.process-item__desc {
+    font-size: 15px;
+    line-height: 1.45;
+    color: #A0A0A0;
+    margin: 0;
+    max-width: 520px;
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ ДЛЯ PROCESS
+   ========================================================================== */
+
+/* Ноутбуки и планшеты (960px — 1280px) */
+@media (max-width: 1280px) {
+    .process-item__title {
+        font-size: 26px;
+    }
+    .process-item__desc {
+        font-size: 14px;
+    }
+    .process__tv-wrapper {
+        width: 210px;
+        top: -90px;
+    }
+}
+
+/* Планшеты (768px — 960px) */
+@media (max-width: 960px) {
+    .process__container {
+        padding: 80px 0;
+    }
+    
+    .process-item {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 28px 0;
+    }
+
+    .process-item__desc {
+        max-width: 100%;
+    }
+
+    .process__tv-wrapper {
+        width: 160px;
+        top: -75px;
+    }
+
+    .process__tv-img {
+        transform: rotate(-10deg);
+    }
+}
+
+/* Мобильные экраны (<= 767px) */
+@media (max-width: 767px) {
+    .process__container {
+        padding: 60px 0;
+    }
+
+    .process__header {
+        padding-bottom: 30px;
+        margin-bottom: 10px;
+    }
+
+    .process__title {
+        font-size: clamp(38px, 10vw, 56px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .process__tv-wrapper {
+        width: 120px;
+        top: -55px;
+    }
+
+    .process__tv-img {
+        transform: rotate(-8deg);
+    }
+
+    .process-item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 24px 0;
+    }
+
+    .process-item__main {
+        gap: 16px;
+    }
+
+    .process-item__num {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    .process-item__title {
+        font-size: 20px;
+    }
+
+    .process-item__desc {
+        font-size: 13px;
+        line-height: 1.4;
+        color: #8E8E8E;
+    }
+}
+
+/* Маленькие мобильные экраны (320px — 390px) */
+@media (max-width: 390px) {
+    .process__tv-wrapper {
+        width: 95px;
+        top: -45px;
+    }
+
+    .process-item__title {
+        font-size: 18px;
+    }
+}
+
+
+/* ==========================================================================
    АДАПТИВНОСТЬ
    ========================================================================== */
 

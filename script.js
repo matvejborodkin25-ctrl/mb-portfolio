@@ -47,3 +47,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const processItems = document.querySelectorAll('.process-item');
+    const previewContainer = document.getElementById('processCursorPreview');
+    const previewImg = document.getElementById('processCursorImg');
+
+    if (!previewContainer || !previewImg || processItems.length === 0) return;
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    // Обновляем позицию превью за курсором
+    const updatePreviewPosition = (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        previewContainer.style.left = `${mouseX}px`;
+        previewContainer.style.top = `${mouseY}px`;
+    };
+
+    processItems.forEach(item => {
+        item.addEventListener('mouseenter', (e) => {
+            const imgSrc = item.getAttribute('data-preview');
+            if (imgSrc) {
+                previewImg.src = imgSrc;
+                previewContainer.classList.add('active');
+                updatePreviewPosition(e);
+            }
+        });
+
+        item.addEventListener('mousemove', (e) => {
+            updatePreviewPosition(e);
+        });
+
+        item.addEventListener('mouseleave', () => {
+            previewContainer.classList.remove('active');
+        });
+    });
+});
