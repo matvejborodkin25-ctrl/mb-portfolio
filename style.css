@@ -49,6 +49,7 @@ body {
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 70px;
+    width: 100%;
 }
 
 /* ==========================================================================
@@ -122,7 +123,7 @@ body {
 }
 
 /* ==========================================================================
-   КНОПКА ОБСУДИТЬ ПРОЕКТ / СМОТРЕТЬ РАБОТЫ
+   КНОПКИ
    ========================================================================== */
 .my-btn {
     position: relative;
@@ -311,7 +312,6 @@ body {
     display: block;
 }
 
-/* БЛОК КАРТОЧЕК СВЯЗИ HERO */
 .contacts-group {
     display: flex;
     flex-direction: column;
@@ -416,10 +416,6 @@ body {
 
 .approach__container {
     position: relative;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 70px;
-    width: 100%;
 }
 
 .approach__bg-title {
@@ -599,17 +595,25 @@ body {
    СЕКЦИЯ УСЛУГИ И ФОРМАТЫ (SERVICES)
    ========================================================================== */
 .services {
-    width: 100%;
-    box-sizing: border-box;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
 
 .services__container {
     width: 100%;
     background-color: #0D0D0D;
-    border-radius: 32px;
-    padding: 70px;
+    border-radius: 40px;
+    padding: 80px 0;
     color: #FFFFFF;
     box-sizing: border-box;
+}
+
+.services__content {
+    width: 100%;
 }
 
 .services__header {
@@ -631,27 +635,28 @@ body {
     letter-spacing: -0.01em;
     font-weight: 400;
     text-transform: uppercase;
+    color: #FFFFFF;
 }
 
 .services__badge {
     position: absolute;
-    top: -35px;
+    top: -30px;
     left: 150px;
     background-color: #FFFFFF;
     color: #141414;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
-    padding: 10px 15px;
+    padding: 8px 14px;
     border-radius: 10px;
     transform: rotate(4deg);
     white-space: nowrap;
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
 }
 
 .mobile-services-btn {
     display: none;
 }
 
+/* СЕТКА И БЕЛЫЕ КАРТОЧКИ */
 .services__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -660,14 +665,15 @@ body {
 }
 
 .services-card {
-    background-color: #FFFFFF;
+    background-color: #FFFFFF !important;
     border-radius: 24px;
-    padding: 20px; /* Отступ 20px со всех сторон из Figma */
+    padding: 24px;
     color: #141414;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     box-sizing: border-box;
-    height: 100%;
+    min-height: 380px;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, box-shadow;
 }
@@ -683,14 +689,12 @@ body {
     justify-content: space-between;
     gap: 16px;
     width: 100%;
-    height: 180px;
-    margin-bottom: 80px; /* Отступ 80px от картинок до текста из Figma */
-    flex-shrink: 0;
+    margin-bottom: 40px;
 }
 
 .services-card__badge {
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
     min-width: 44px;
     background-color: #830D2E;
     border-radius: 50%;
@@ -701,15 +705,15 @@ body {
 }
 
 .services-card__badge-icon {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     object-fit: contain;
 }
 
 .services-card__image-wrap {
-    width: 180px;            /* Квадрат 180px из Figma */
-    height: 180px;
-    aspect-ratio: 1 / 1;     /* Пропорция 1:1 */
+    width: 160px;
+    height: 160px;
+    aspect-ratio: 1 / 1;
     flex-shrink: 0;
     border-radius: 16px;
     display: flex;
@@ -723,38 +727,248 @@ body {
 .services-card__image-wrap--blue  { background-color: #CBE6FD; }
 
 .services-card__img {
-    max-width: 75%;
-    max-height: 75%;
+    max-width: 80%;
+    max-height: 80%;
     object-fit: contain;
 }
 
 .services-card__content {
     display: flex;
     flex-direction: column;
-    gap: 0px;
-    margin-top: 0; /* Гарантированно выравнивает начало текста по единой линии */
 }
 
 .services-card__title {
     font-family: var(--font-heading);
-    font-size: 30px;
+    font-size: 28px;
     line-height: 1;
-    margin: 0 0 12px 0;
+    margin: 0 0 10px 0;
     text-transform: uppercase;
-    min-height: 10px;
-    display: flex;
-    align-items: flex-start;
+    color: #0D0D0D;
 }
 
 .services-card__desc {
-    font-size: 16px;
-    line-height: 1.2;
+    font-size: 15px;
+    line-height: 1.3;
     color: #656565;
     margin: 0;
 }
 
+
+/* --- АДАПТИВНОСТЬ ДЛЯ SERVICES --- */
+@media (max-width: 1024px) {
+    .services__container {
+        padding: 40px 0;
+        border-radius: 24px;
+    }
+}
+
+
 /* ==========================================================================
-   АДАПТИВНОСТЬ ПО РАЗРЕШЕНИЯМ
+   СЕКЦИЯ РАБОТЫ / ПРОЕКТЫ (WORKS)
+   ========================================================================== */
+.works {
+    padding: 120px 0;
+    position: relative;
+}
+
+.works__header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.works__title {
+    font-family: var(--font-heading);
+    font-size: 110px;
+    line-height: 0.85;
+    color: var(--color-accent);
+    text-align: center;
+    letter-spacing: -0.01em;
+}
+
+.works__link {
+    position: absolute;
+    right: 0;
+    top: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-text-dark);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--color-text-dark);
+    transition: color 0.3s ease, text-decoration-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.works__link-dot {
+    color: var(--color-accent);
+    font-size: 20px;
+    line-height: 1;
+}
+
+.works__link:hover {
+    color: var(--color-accent);
+    text-decoration-color: var(--color-accent);
+}
+
+.works__subtitle {
+    max-width: 780px;
+    margin: 0 auto 90px auto;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.35;
+    color: #141414;
+}
+
+.works__subtitle strong {
+    font-weight: 600;
+}
+
+.works__mobile-footer {
+    display: none;
+}
+
+/* СЕТКА ПРОЕКТОВ (12-КОЛОНОЧНЫЙ GRID) */
+.works__grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 24px;
+    row-gap: 60px;
+    align-items: start;
+}
+
+.project-card {
+    text-decoration: none;
+    color: var(--color-text-dark);
+    display: flex;
+    flex-direction: column;
+    cursor: none;
+}
+
+.project-card__image-wrap {
+    position: relative;
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    background-color: #F0F0F0;
+}
+
+.project-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-card__img {
+    transform: scale(1.03);
+}
+
+.project-card__mobile-badge {
+    display: none;
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.project-card__mobile-badge-icon {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1);
+}
+
+.project-card__title {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    line-height: 1;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.project-card__desc {
+    font-size: 14px;
+    line-height: 1.3;
+    color: #656565;
+}
+
+/* Выравнивание по колонкам */
+.project-card--1 {
+    grid-column: 3 / span 3;
+    padding-top: 120px;
+}
+.project-card--1 .project-card__image-wrap {
+    aspect-ratio: 1 / 1.15;
+}
+
+.project-card--2 {
+    grid-column: 7 / span 5;
+}
+.project-card--2 .project-card__image-wrap {
+    aspect-ratio: 1.25 / 1;
+}
+
+.project-card--3 {
+    grid-column: 1 / span 3;
+    padding-top: 40px;
+}
+.project-card--3 .project-card__image-wrap {
+    aspect-ratio: 1 / 1.15;
+}
+
+.project-card--4 {
+    grid-column: 5 / span 5;
+}
+.project-card--4 .project-card__image-wrap {
+    aspect-ratio: 1.15 / 1;
+}
+
+.project-card--5 {
+    grid-column: 10 / span 2;
+}
+.project-card--5 .project-card__image-wrap {
+    aspect-ratio: 1 / 1.1;
+}
+
+/* КАСТОМНЫЙ КУРСОР */
+.project-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 999999;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+.project-cursor.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
    ========================================================================== */
 
 /* Ноутбуки (1025px — 1439px) */
@@ -792,7 +1006,6 @@ body {
         font-size: 13px;
     }
 
-    /* Services */
     .services__container {
         padding: 50px 40px;
     }
@@ -813,9 +1026,19 @@ body {
         font-size: 26px;
         min-height: 52px;
     }
+
+    .works__title {
+        font-size: 85px;
+    }
+    .works__grid {
+        column-gap: 16px;
+    }
+    .project-card--1 {
+        padding-top: 80px;
+    }
 }
 
-/* Планшеты (<= 1024px) */
+/* Планшеты и мобильные устройства (<= 1024px) */
 @media (max-width: 1024px) {
     .container {
         padding: 0 16px;
@@ -922,10 +1145,6 @@ body {
     }
 
     /* Адаптив ПОДХОД */
-    .approach__container {
-        padding: 0 20px;
-    }
-
     .approach__grid {
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 16px;
@@ -974,6 +1193,60 @@ body {
     .services-card__title {
         min-height: auto;
     }
+
+    /* Адаптив РАБОТЫ */
+    .project-card {
+        cursor: pointer;
+    }
+    .project-cursor {
+        display: none !important;
+    }
+    .project-card__mobile-badge {
+        display: flex;
+    }
+
+    .works__header {
+        justify-content: flex-start;
+    }
+    .works__title {
+        font-size: 64px;
+        text-align: left;
+    }
+    .works__link {
+        display: none;
+    }
+    .works__mobile-footer {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 40px;
+    }
+    .works__link--mobile {
+        position: static;
+        font-size: 16px;
+    }
+    .works__subtitle {
+        text-align: left;
+        margin-bottom: 40px;
+        font-size: 15px;
+    }
+
+    .works__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px 16px;
+    }
+
+    .project-card--1,
+    .project-card--2,
+    .project-card--3,
+    .project-card--4,
+    .project-card--5 {
+        grid-column: auto;
+        padding-top: 0;
+    }
+
+    .project-card__image-wrap {
+        aspect-ratio: 4 / 3 !important;
+    }
 }
 
 /* Мобильные устройства (< 767px) */
@@ -1014,7 +1287,6 @@ body {
         line-height: 1.3;
     }
 
-    /* Services */
     .services-card {
         padding: 16px;
         border-radius: 20px;
@@ -1052,6 +1324,36 @@ body {
 
     .services-card__desc {
         font-size: 13px;
+    }
+
+    .works {
+        padding: 60px 0;
+    }
+    .works__title {
+        font-size: 52px;
+    }
+    .works__subtitle {
+        font-size: 14px;
+    }
+    .works__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 12px;
+    }
+    .project-card__title {
+        font-size: 20px;
+    }
+    .project-card__desc {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 479px) {
+    .works__grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    .project-card__image-wrap {
+        aspect-ratio: 16 / 10 !important;
     }
 }
 
