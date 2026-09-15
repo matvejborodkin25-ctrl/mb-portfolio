@@ -1006,7 +1006,7 @@ body {
     font-family: var(--font-heading);
     font-size: clamp(60px, 7vw, 100px);
     line-height: 0.9;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.03em;
     font-weight: 400;
     text-transform: uppercase;
     color: #FFFFFF;
@@ -1022,7 +1022,7 @@ body {
     position: absolute;
     right: 0;
     top: -100px; /* Выход за пределы шапки к самому верху секции */
-    width: 260px;
+    width: 220px;
     pointer-events: none;
     z-index: 2;
     display: flex;
@@ -1071,14 +1071,14 @@ body {
     height: 36px;
     background-color: #830D2E;
     color: #FFFFFF;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     border-radius: 50%;
     flex-shrink: 0;
 }
 
 .process-item__title {
-    font-size: 32px;
+    font-size: 50px;
     font-weight: 600;
     color: #FFFFFF;
     margin: 0;
@@ -1086,8 +1086,8 @@ body {
 }
 
 .process-item__desc {
-    font-size: 15px;
-    line-height: 1.45;
+    font-size: 16px;
+    line-height: 1.2;
     color: #A0A0A0;
     margin: 0;
     max-width: 520px;
