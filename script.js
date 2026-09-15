@@ -118,30 +118,41 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Пример обработчика отправки формы
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contactForm');
 
-  const formData = {
-    name: document.querySelector('#name').value,
-    contact: document.querySelector('#contact').value,
-    message: document.querySelector('#message').value,
-  };
+  if (!form) return;
 
-  try {
-    const response = await fetch('/api/send-telegram', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-    if (response.ok) {
-      alert('Сообщение успешно отправлено!');
-      form.reset();
-    } else {
-      alert('Ошибка при отправке. Попробуйте позже.');
+    const formData = {
+      name: form.querySelector('[name="name"]').value,
+      contact: form.querySelector('[name="contact"]').value,
+      service: form.querySelector('[name="service"]').value
+    };
+
+    const submitBtn = form.querySelector('.my-btn');
+    if (submitBtn) submitBtn.disabled = true;
+
+    try {
+      const response = await fetch('/api/send-telegram', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        alert('Заявка успешно отправлена!');
+        form.reset();
+      } else {
+        alert('Ошибка при отправке. Попробуйте еще раз.');
+      }
+    } catch (error) {
+      console.error('Ошибка:', error);
+      alert('Произошла ошибка при отправке заявки.');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
     }
-  } catch (err) {
-    console.error(err);
-    alert('Произошла ошибка.');
-  }
+  });
 });
