@@ -456,4 +456,31 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     })();
+
+    // ==========================================================================
+    // 8. ЗАЛИВКА КНОПОК .my-btn: запас масштаба по ширине кнопки
+    // Круг 44px должен вырасти так, чтобы закрыть кнопку целиком, даже если она широкая.
+    // Для обычных кнопок остаётся прежнее значение 12 (анимация не меняется).
+    // ==========================================================================
+    (() => {
+        const CIRCLE_RADIUS = 22; // половина круга 44px
+        const BASE_SCALE = 12;    // исходное значение из CSS
+
+        const updateFill = (btn) => {
+            const scale = Math.max(BASE_SCALE, Math.ceil(btn.offsetWidth / CIRCLE_RADIUS) + 1);
+            btn.style.setProperty('--fill-scale', scale);
+        };
+
+        const buttons = document.querySelectorAll('.my-btn');
+        if (!buttons.length) return;
+
+        if ('ResizeObserver' in window) {
+            const ro = new ResizeObserver(entries => entries.forEach(e => updateFill(e.target)));
+            buttons.forEach(btn => { updateFill(btn); ro.observe(btn); });
+        } else {
+            const all = () => buttons.forEach(updateFill);
+            all();
+            window.addEventListener('resize', all);
+        }
+    })();
 });
